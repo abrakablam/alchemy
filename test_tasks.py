@@ -9,7 +9,7 @@ def test_get_time():
     task = Task("testing", 60, "test description")
     assert task.estimated_time == 60
 
-def test_updating_time():
+def test_updating_time(): 
     task = Task("testing", 60, "test description")
     task.total_time = 60
     assert task.total_time == 60

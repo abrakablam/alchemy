@@ -1,13 +1,5 @@
 from typing import List
-from tasks import Task
 
-# Okay, so what does a project look like?
-# It should contain some number of tasks
-# as well as some information about the project istelf
-# the total time spent across all tasks
-#
-# projects have no tasks when created, but they can be added later.
-# each project has an array (?) of Task objects that are created with the Project name as a param
 class Project:
     def __init__(self, name) -> None:
         self.name = name
@@ -18,13 +10,22 @@ class Project:
     def __repr__(self) -> str:
         return f"Project({self.name}, {self._tasks}, {self._total_time}, {self._estimated_time})"
 
-    @property
-    def tasks(self) -> List:
+    # can't seem to use these setters and getters with @property, tests fail.
+    def get_tasks(self) -> List:
         return self._tasks
 
-    @tasks.setter
-    def tasks(self, task_name, estimated_time) -> None:
-        new_task = Task(task_name, estimated_time, project=self.name)
-        self._tasks.append(new_task)
-        
-        
+    def tasks(self, task) -> None:
+        self._tasks.append(task)
+
+    def del_task(self, task_name):
+        for task in self._tasks:
+            if task.name == task_name:
+                print(f"Task name: {task.name}")
+            else:
+                print("not in array")
+
+    def get_total_time(self) -> int:
+        return self._total_time
+
+
+
